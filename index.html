@@ -151,11 +151,11 @@
 				// store all '{' and '}' index positions
 				const indexPos = getBracketIndices(text)
 				// replace all with either <span class="italics"> or </span>
-				if (indexPos.length % 2 !== 0){
-					alert(`The number of '{' and '}' don't match. '{' and '}' will not create italicised text now.`)
-					content.innerText = text
-				}else{
-					if(radioTrue.checked){
+				if(radioTrue.checked){
+					if (indexPos.length % 2 !== 0){
+						alert(`The number of '{' and '}' don't match. '{' and '}' will not create italicised text now.`)
+						content.innerText = text
+					}else{
 						content.innerText = ''
 						var j=0
 						for(let i=0;i<indexPos.length;i+=2){
@@ -164,9 +164,9 @@
 							j=indexPos[i+1]+1
 						}
 						content.append(createElementText('span',text.substring(j,text.length)))
-					}else{
-						content.innerText = text
 					}
+				}else{
+					content.innerText = text
 				}
 			}
 
@@ -184,6 +184,12 @@
 			}
 
 			function increaseSize(){
+				blurContainer.style = `
+				height: ${0};
+				`
+				document.getElementById('blur').style = `
+				height: ${0};
+				`
 				console.log(1)
 				const height = document.body.scrollHeight
 				blurContainer.style = `
